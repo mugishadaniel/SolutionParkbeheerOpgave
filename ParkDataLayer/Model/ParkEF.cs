@@ -12,14 +12,16 @@ namespace ParkDataLayer.Model
     public class ParkEF
     {
         [Key]
-        public string Id { get;  set; }
         [MaxLength(20)]
+        public string Id { get;  set; }
+
         [Required]
-        public string Naam { get;  set; }
         [MaxLength(250)]
-        [Required]
-        public string Locatie { get;  set; }
+        public string Naam { get;  set; }
+
         [MaxLength(500)]
+        public string Locatie { get;  set; }
+
         public List<HuisEF> _huis { get;  set;}
     }
 }
