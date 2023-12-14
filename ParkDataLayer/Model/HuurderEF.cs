@@ -13,7 +13,7 @@ namespace ParkDataLayer.Model
         public int Id { get;  set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(100)] 
         public string Naam { get;  set; }
 
         [MaxLength(100)]
