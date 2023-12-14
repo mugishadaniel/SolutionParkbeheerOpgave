@@ -17,35 +17,7 @@ namespace ParkDataLayer.Context
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=DANIEL\SQLEXPRESS;Initial Catalog=ParkBeheerdb;Integrated Security=True;Pooling=False");
-        }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<HuisEF>()
-                .HasKey(h => h.Id);
-
-            modelBuilder.Entity<HuurderEF>()
-                .HasKey(h => h.Id);
-
-            modelBuilder.Entity<HuurcontractEF>()
-                .HasKey(h => h.Id);
-
-            modelBuilder.Entity<HuisEF>()
-                .HasMany(h => h._huurcontracten)
-                .WithOne();
-
-            modelBuilder.Entity<HuisEF>()
-                .HasMany(h => h._huurders)
-                .WithOne(); 
-
-            modelBuilder.Entity<HuurcontractEF>()
-                .HasOne(hc => hc.Huurder)
-                .WithOne();
-
-            modelBuilder.Entity<ParkEF>()
-                .HasMany(p => p._huis)
-                .WithOne();
-
+            optionsBuilder.UseSqlServer(@"Data Source=DANIEL\SQLEXPRESS;Initial Catalog=ParkBeheerdb;Integrated Security=True;Trust Server Certificate=True");
         }
 
 

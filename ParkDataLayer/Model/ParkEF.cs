@@ -1,5 +1,4 @@
-﻿using ParkBusinessLayer.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
@@ -11,7 +10,6 @@ namespace ParkDataLayer.Model
 {
     public class ParkEF
     {
-        [Key]
         [MaxLength(20)]
         public string Id { get;  set; }
 

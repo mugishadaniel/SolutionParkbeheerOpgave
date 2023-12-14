@@ -7,6 +7,10 @@ namespace ParkDataLayer.Repositories
 {
     public class ContractenRepositoryEF : IContractenRepository
     {
+        public ContractenRepositoryEF(string connectionString)
+        {
+            throw new NotImplementedException();
+        }
         public void AnnuleerContract(Huurcontract contract)
         {
             throw new NotImplementedException();

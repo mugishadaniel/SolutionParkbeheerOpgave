@@ -1,5 +1,4 @@
-﻿using ParkBusinessLayer.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,6 +10,7 @@ namespace ParkDataLayer.Model
 {
     public class HuisEF
     {
+ 
         public int Id { get;  set; }
         [MaxLength(250)]
         public string Straat { get;  set; }
@@ -21,6 +21,6 @@ namespace ParkDataLayer.Model
         public bool Actief { get; set; }
         public ParkEF Park { get;  set; }
         public List<HuurcontractEF> _huurcontracten { get; set; }
-        public List<Huurder> _huurders { get; set; }
+        public List<HuurderEF> _huurders { get; set; }
     }
 }

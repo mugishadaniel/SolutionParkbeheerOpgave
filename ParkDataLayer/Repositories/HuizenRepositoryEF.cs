@@ -6,6 +6,10 @@ namespace ParkDataLayer.Repositories
 {
     public class HuizenRepositoryEF : IHuizenRepository
     {
+        public HuizenRepositoryEF(string connectionString)
+        {
+            throw new NotImplementedException();
+        }
         public Huis GeefHuis(int id)
         {
             throw new NotImplementedException();

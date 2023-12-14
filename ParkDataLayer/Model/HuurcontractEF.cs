@@ -1,5 +1,4 @@
-﻿using ParkBusinessLayer.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,7 +9,7 @@ namespace ParkDataLayer.Model
 {
     public class HuurcontractEF
     {
-
+        [MaxLength(25)]
         public string Id { get;  set; }
 
         [Required]

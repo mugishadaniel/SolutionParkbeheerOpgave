@@ -13,7 +13,7 @@ namespace ConsoleAppModelTest
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            string connectionString= @"Data Source=NB21-6CDPYD3\SQLEXPRESS;Initial Catalog=ParkbeheerS;Integrated Security=True";
+            string connectionString= @"Data Source=DANIEL\SQLEXPRESS;Initial Catalog=ParkBeheerdb;Integrated Security=True;Trust Server Certificate=True";
             //ParkbeheerContext ctx = new ParkbeheerContext(connectionString);
             //ctx.Database.EnsureDeleted();
             //ctx.Database.EnsureCreated();

@@ -7,6 +7,10 @@ namespace ParkDataLayer.Repositories
 {
     public class HuurderRepositoryEF : IHuurderRepository
     {
+        public HuurderRepositoryEF(string connectionString)
+        {
+            throw new NotImplementedException();
+        }
         public Huurder GeefHuurder(int id)
         {
             throw new NotImplementedException();
