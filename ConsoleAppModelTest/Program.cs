@@ -2,6 +2,7 @@
 using ParkBusinessLayer.Interfaces;
 using ParkBusinessLayer.Model;
 using ParkDataLayer;
+using ParkDataLayer.Context;
 using ParkDataLayer.Model;
 using ParkDataLayer.Repositories;
 using System;
@@ -13,18 +14,17 @@ namespace ConsoleAppModelTest
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            string connectionString= @"Data Source=DANIEL\SQLEXPRESS;Initial Catalog=ParkBeheerdb;Integrated Security=True;Trust Server Certificate=True";
-            //ParkbeheerContext ctx = new ParkbeheerContext(connectionString);
-            //ctx.Database.EnsureDeleted();
-            //ctx.Database.EnsureCreated();
+            ParkContext ctx = new ParkContext();
+            ctx.Database.EnsureDeleted();
+            ctx.Database.EnsureCreated();
 
-            IHuizenRepository hrepo = new HuizenRepositoryEF(connectionString);
+            IHuizenRepository hrepo = new HuizenRepositoryEF();
             BeheerHuizen bh = new BeheerHuizen(hrepo);
             Park p = new Park("p2", "Binnenhoeve", "Gent");
             bh.VoegNieuwHuisToe("parklaan", 1, p);
             bh.VoegNieuwHuisToe("parklaan", 2, p);
             bh.VoegNieuwHuisToe("parklaan", 3, p);
-            //var x = bh.GeefHuis(1);
+            var x = bh.GeefHuis(1);
             //x.ZetStraat("Kerkstraat");
             //x.ZetNr(11);
             //bh.UpdateHuis(x);
@@ -41,7 +41,7 @@ namespace ConsoleAppModelTest
             //bhuur.VoegNieuweHuurderToe("jos", new Contactgegevens("email1", "tel", "adres"));
             //bhuur.VoegNieuweHuurderToe("jef", new Contactgegevens("email2", "tel", "adres"));
 
-            IContractenRepository crepo = new ContractenRepositoryEF(connectionString);
+            IContractenRepository crepo = new ContractenRepositoryEF();
             BeheerContracten bc = new BeheerContracten(crepo);
             //Huurperiode hp = new Huurperiode(DateTime.Now, 10);
             //Huurder h = new Huurder(2, "Jos", new Contactgegevens("email1", "tel", "adres"));

@@ -1,5 +1,6 @@
 ﻿using ParkBusinessLayer.Interfaces;
 using ParkBusinessLayer.Model;
+using ParkDataLayer.Context;
 using System;
 using System.Collections.Generic;
 
@@ -7,10 +8,8 @@ namespace ParkDataLayer.Repositories
 {
     public class ContractenRepositoryEF : IContractenRepository
     {
-        public ContractenRepositoryEF(string connectionString)
-        {
-            throw new NotImplementedException();
-        }
+        private ParkContext ctx = new ParkContext();
+
         public void AnnuleerContract(Huurcontract contract)
         {
             throw new NotImplementedException();
