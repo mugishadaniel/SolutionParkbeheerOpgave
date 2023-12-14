@@ -10,8 +10,7 @@ namespace ParkDataLayer.Model
 {
     public class HuurcontractEF
     {
-        [Key]
-        [MaxLength(25)]
+
         public string Id { get;  set; }
 
         [Required]
