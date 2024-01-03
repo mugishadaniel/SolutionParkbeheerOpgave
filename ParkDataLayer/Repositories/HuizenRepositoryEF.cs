@@ -2,6 +2,7 @@
 using ParkBusinessLayer.Interfaces;
 using ParkBusinessLayer.Model;
 using ParkDataLayer.Context;
+using ParkDataLayer.Exceptions;
 using ParkDataLayer.Mappers;
 using ParkDataLayer.Model;
 using System;
@@ -24,7 +25,7 @@ namespace ParkDataLayer.Repositories
             catch (Exception ex)
             {
 
-                throw new Exception("GeefHuis", ex);
+                throw new RepositoryException("GeefHuis", ex);
             }
         }
 
@@ -32,36 +33,65 @@ namespace ParkDataLayer.Repositories
         {
             try
             {
-                // LINQ query to find the HuisEF entity
                 var huis = ctx.Huizen
                              .FirstOrDefault(h => h.Straat == straat && h.Nr == nummer && h.Park.Naam == park.Naam);
 
-                // Return true if a matching HuisEF entity is found, false otherwise
                 return huis != null;
 
             }
             catch (Exception ex)
             {
 
-                throw new DataException("Heefthuis",ex);
+                throw new RepositoryException("Heefthuis",ex);
             }
         }
 
         public bool HeeftHuis(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                HuisEF huisEF = ctx.Huizen.FirstOrDefault(h => h.Id == id);
+                return huisEF != null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new RepositoryException("Heefthuis", ex);
+            }
         }
 
         public void UpdateHuis(Huis huis)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (huis == null) throw new RepositoryException("UpdateHuis: huis is null");
+                HuisEF huisEF = ctx.Huizen.Find(huis.Id);
+                if (huisEF == null) throw new RepositoryException("UpdateHuis: huisEF is null");
+
+                if (huis.Park != null && huis.Park.Id != null)
+                {
+                    ParkEF existingPark = ctx.Parken.Find(huis.Park.Id);
+                    if (existingPark != null)
+                    {
+                        huisEF.Park = existingPark;
+                    }
+                }
+                HuisMapper.UpdateHuisEF(huisEF, huis);
+                ctx.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new RepositoryException("Updatehuis", ex);
+            }
         }
 
         public Huis VoegHuisToe(Huis h)
         {
             try
             {
-                if (h == null) throw new DataException("VoegHuisToe: huis is null");
+                if (h == null) throw new RepositoryException("VoegHuisToe: huis is null");
                 HuisEF huis = HuisMapper.ToHuisEF(h);
                 ParkEF existingPark = ctx.Parken.Find(h.Park.Id);
                 if (existingPark != null)
@@ -77,7 +107,7 @@ namespace ParkDataLayer.Repositories
             catch (Exception ex)
             {
 
-                throw new DataException("VoegHuisToe", ex);
+                throw new RepositoryException("VoegHuisToe", ex);
             }
         }
     }

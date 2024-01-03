@@ -69,7 +69,7 @@ namespace ParkDataLayer.Repositories
             catch (Exception ex)
             {
 
-                throw new RepositoryException("", ex);
+                throw new RepositoryException("Heefthuurder", ex);
             }
         }
 
@@ -88,7 +88,7 @@ namespace ParkDataLayer.Repositories
             catch (Exception ex)
             {
 
-                throw new RepositoryException("",ex);
+                throw new RepositoryException("UpdateHuurder",ex);
             }
         }
 
@@ -103,7 +103,7 @@ namespace ParkDataLayer.Repositories
             catch (Exception ex)
             {
 
-                throw new RepositoryException("",ex);
+                throw new RepositoryException("VoegHuurder",ex);
             }
         }
     }

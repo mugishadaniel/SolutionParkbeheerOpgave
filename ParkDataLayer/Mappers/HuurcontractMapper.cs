@@ -31,5 +31,15 @@ namespace ParkDataLayer.Mappers
                 Huis = HuisMapper.ToHuisEF(huurcontract.Huis),
             };
         }
+        
+        public static void UpdateHuurcontractEF(HuurcontractEF huurcontractEF, Huurcontract huurcontract)
+        {
+            huurcontractEF.Id = huurcontract.Id;
+            huurcontractEF.StartDatum = huurcontract.Huurperiode.StartDatum;
+            huurcontractEF.EindDatum = huurcontract.Huurperiode.EindDatum;
+            huurcontractEF.Aantaldagen = huurcontract.Huurperiode.Aantaldagen;
+            huurcontractEF.Huurder = HuurderMapper.ToHuurderEF(huurcontract.Huurder);
+            huurcontractEF.Huis = HuisMapper.ToHuisEF(huurcontract.Huis);
+        }
     }
 }

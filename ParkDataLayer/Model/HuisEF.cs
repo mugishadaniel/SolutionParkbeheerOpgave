@@ -10,6 +10,16 @@ namespace ParkDataLayer.Model
 {
     public class HuisEF
     {
+        public HuisEF(string straat, int nr, bool actief)
+        {
+            Straat = straat;
+            Nr = nr;
+            Actief = actief;
+        }
+
+        public HuisEF()
+        {
+        }
  
         public int Id { get;  set; }
         [MaxLength(250)]

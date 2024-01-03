@@ -10,6 +10,17 @@ namespace ParkDataLayer.Model
 {
     public class ParkEF
     {
+        public ParkEF(string id, string naam, string locatie)
+        {
+            Id = id;
+            Naam = naam;
+            Locatie = locatie;
+        }
+
+        public ParkEF()
+        {
+        }
+
         [MaxLength(20)]
         public string Id { get;  set; }
 

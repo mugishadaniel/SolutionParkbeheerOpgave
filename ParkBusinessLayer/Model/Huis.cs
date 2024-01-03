@@ -29,10 +29,22 @@ namespace ParkBusinessLayer.Model
             Park = park;
             Actief = true;
         }
+
+        public Huis(string straat,int nr, bool actief)
+        {
+            ZetStraat(straat);
+            ZetNr(nr);
+            Actief = actief;
+        }
+
         public Huis(int id, string straat, int nr, bool actief, Park park) : this(straat, nr, park)
         {
             ZetId(id);
             Actief = actief;
+        }
+
+        public Huis()
+        {
         }
 
         public IReadOnlyList<Huurcontract> Huurcontracten()

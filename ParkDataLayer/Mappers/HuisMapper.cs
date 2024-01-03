@@ -25,5 +25,13 @@ namespace ParkDataLayer.Mappers
                 Park = ParkMapper.ToParkEF(huis.Park),               
             };
         }
+
+        public static void UpdateHuisEF(HuisEF huisEF, Huis huis)
+        {
+            huisEF.Id = huis.Id;
+            huisEF.Straat = huis.Straat;
+            huisEF.Nr = huis.Nr;
+            huisEF.Actief = huis.Actief;
+        }
     }
 }
