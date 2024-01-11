@@ -98,6 +98,7 @@ namespace ParkDataLayer.Repositories
             {
                 HuurderEF huurderEF = HuurderMapper.ToHuurderEF(h);
                 ctx.Huurders.Add(huurderEF);
+                ctx.SaveChanges();
                 return h;
             }
             catch (Exception ex)

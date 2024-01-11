@@ -12,7 +12,7 @@ namespace ParkDataLayer.Mappers
     {
         static public Park ToPark(ParkEF parkEF)
         {
-            return new Park(parkEF.Id,parkEF.Naam,parkEF.Locatie);
+            return new Park(parkEF.Id,parkEF.Naam,parkEF.Locatie,parkEF._huis.Select(h => HuisMapper.ToHuisPark(h)).ToList());
         }
 
         static public ParkEF ToParkEF(Park park)

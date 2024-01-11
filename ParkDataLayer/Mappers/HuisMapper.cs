@@ -15,6 +15,11 @@ namespace ParkDataLayer.Mappers
             return new Huis(huisEF.Id,huisEF.Straat,huisEF.Nr,huisEF.Actief,ParkMapper.ToPark(huisEF.Park));
         }
 
+        public static Huis ToHuisPark(HuisEF huisEF)
+        {
+            return new Huis(huisEF.Id, huisEF.Straat, huisEF.Nr, huisEF.Actief, null);
+        }
+
         public static HuisEF ToHuisEF(Huis huis)
         {
             return new HuisEF() { 

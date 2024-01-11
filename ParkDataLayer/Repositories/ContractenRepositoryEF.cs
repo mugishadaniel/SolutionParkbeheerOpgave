@@ -1,4 +1,5 @@
-﻿using ParkBusinessLayer.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using ParkBusinessLayer.Interfaces;
 using ParkBusinessLayer.Model;
 using ParkDataLayer.Context;
 using ParkDataLayer.Exceptions;
@@ -35,7 +36,12 @@ namespace ParkDataLayer.Repositories
         {
             try
             {
-                HuurcontractEF contract = ctx.Huurcontracten.Find(id);
+                HuurcontractEF contract = ctx.Huurcontracten
+                    .Include(c => c.Huurder)
+                    .Include(c => c.Huis)
+                    .ThenInclude(h => h.Park)
+                    .FirstOrDefault(c => c.Id == id);
+
                 return HuurcontractMapper.ToHuurcontract(contract);
             }
             catch (Exception ex)
@@ -114,13 +120,28 @@ namespace ParkDataLayer.Repositories
         {
             try
             {
-                ctx.Huurcontracten.Add(HuurcontractMapper.ToHuurcontractEF(contract));
+                // Assuming you have the IDs of Huurder and Huis
+                var existingHuurder = ctx.Huurders.Find(contract.Huurder.Id);
+                var existingHuis = ctx.Huizen.Find(contract.Huis.Id);
+
+                // Create a new Huurcontract instance with existing entities
+                var huurcontractEF = new HuurcontractEF
+                {
+                    // Set properties of Huurcontract
+                    Huurder = existingHuurder,
+                    Huis = existingHuis,
+                    Id = contract.Id,
+                };
+
+                ctx.Huurcontracten.Add(huurcontractEF);
+                ctx.SaveChanges();
             }
             catch (Exception ex)
             {
-
                 throw new RepositoryException("VoegContractToe", ex);
             }
         }
+
+
     }
 }

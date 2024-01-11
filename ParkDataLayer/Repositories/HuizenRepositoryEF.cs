@@ -19,7 +19,11 @@ namespace ParkDataLayer.Repositories
         {
             try
             {
-                HuisEF huisEF = ctx.Huizen.Include(h => h.Park).FirstOrDefault(h => h.Id == id);
+                HuisEF huisEF = ctx.Huizen
+                    .Include(h => h.Park)
+                    .ThenInclude(p => p._huis)
+                    .FirstOrDefault(h => h.Id == id);
+                
                 return HuisMapper.ToHuis(huisEF);
             }
             catch (Exception ex)

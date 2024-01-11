@@ -31,6 +31,5 @@ namespace ParkDataLayer.Model
         public bool Actief { get; set; }
         public ParkEF Park { get;  set; }
         public List<HuurcontractEF> _huurcontracten { get; set; }
-        public List<HuurderEF> _huurders { get; set; }
     }
 }

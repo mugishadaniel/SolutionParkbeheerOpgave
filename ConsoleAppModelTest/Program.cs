@@ -54,7 +54,7 @@ namespace ConsoleAppModelTest
             var t = bh.GeefHuis(1);
             Console.WriteLine($"Id : {t.Id}, straat : {t.Straat} {t.Nr}, park : {t.Park.Naam}");
             Console.WriteLine($"Id : {y.Id}, Huurder : {y.Huurder.Naam}, Huurperiode : {y.Huurperiode.StartDatum} - {y.Huurperiode.EindDatum},straat : {y.Huis.Straat} {y.Huis.Nr}, park : {y.Huis.Park.Naam} ");
-            bc.AnnuleerContract(y);
+            //bc.AnnuleerContract(y);
         }
     }
 }
