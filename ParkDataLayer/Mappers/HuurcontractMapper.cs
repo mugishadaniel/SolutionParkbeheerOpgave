@@ -19,6 +19,13 @@ namespace ParkDataLayer.Mappers
                 HuisMapper.ToHuis(huurcontractEF.Huis)
                 );
         }
+        public static Huurcontract ToHuurcontractHuis(HuurcontractEF huurcontractEF)
+        {
+            return new Huurcontract(
+                 huurcontractEF.Id,
+                new Huurperiode(huurcontractEF.StartDatum, huurcontractEF.Aantaldagen),HuurderMapper.ToHuurder(huurcontractEF.Huurder)
+                );
+        }
         public static HuurcontractEF ToHuurcontractEF(Huurcontract huurcontract)
         {
             return new HuurcontractEF()
@@ -31,7 +38,7 @@ namespace ParkDataLayer.Mappers
                 Huis = HuisMapper.ToHuisEF(huurcontract.Huis),
             };
         }
-        
+
         public static void UpdateHuurcontractEF(HuurcontractEF huurcontractEF, Huurcontract huurcontract)
         {
             huurcontractEF.Id = huurcontract.Id;

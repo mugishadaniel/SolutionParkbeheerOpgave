@@ -22,6 +22,8 @@ namespace ParkDataLayer.Repositories
                 HuisEF huisEF = ctx.Huizen
                     .Include(h => h.Park)
                     .ThenInclude(p => p._huis)
+                    .Include(h => h._huurcontracten)
+                    .ThenInclude(hc => hc.Huurder)
                     .FirstOrDefault(h => h.Id == id);
                 
                 return HuisMapper.ToHuis(huisEF);

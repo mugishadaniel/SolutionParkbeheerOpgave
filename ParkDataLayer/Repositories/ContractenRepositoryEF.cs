@@ -123,6 +123,25 @@ namespace ParkDataLayer.Repositories
                 // Assuming you have the IDs of Huurder and Huis
                 var existingHuurder = ctx.Huurders.Find(contract.Huurder.Id);
                 var existingHuis = ctx.Huizen.Find(contract.Huis.Id);
+                if ( existingHuis == null)
+                {
+                    existingHuis = new HuisEF
+                    {
+                        Straat = contract.Huis.Straat,
+                        Nr = contract.Huis.Nr,
+                        Actief = contract.Huis.Actief,
+                        Park = new ParkEF
+                        {
+                            Id = contract.Huis.Park.Id,
+                            Naam = contract.Huis.Park.Naam,
+                            Locatie = contract.Huis.Park.Locatie
+                        },
+                        _huurcontracten = new List<HuurcontractEF>()
+                    };
+                    ctx.Huizen.Add(existingHuis);
+                }
+
+                if (existingHuis._huurcontracten == null) existingHuis._huurcontracten = new List<HuurcontractEF>();
 
                 // Create a new Huurcontract instance with existing entities
                 var huurcontractEF = new HuurcontractEF
@@ -133,7 +152,8 @@ namespace ParkDataLayer.Repositories
                     Id = contract.Id,
                 };
 
-                ctx.Huurcontracten.Add(huurcontractEF);
+                existingHuis._huurcontracten.Add(huurcontractEF);
+                ctx.Huurcontracten.Add(huurcontractEF);              
                 ctx.SaveChanges();
             }
             catch (Exception ex)

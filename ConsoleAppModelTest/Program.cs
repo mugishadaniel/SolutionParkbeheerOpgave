@@ -31,11 +31,9 @@ namespace ConsoleAppModelTest
             bh.UpdateHuis(x);
             bh.ArchiveerHuis(x);
             Huis h1 = new Huis();
-            ParkEF pdb = new ParkEF("p3","naam","locatie");
+            ParkEF pdb = new ParkEF("p3", "naam", "locatie");
             HuisEF hdb = new HuisEF("straat", 5, true);
             hdb.Park = pdb;
-            ctx.Huizen.Add(hdb);
-            ctx.SaveChanges();
             //huurder
             IHuurderRepository rhuur = new HuurderRepositoryEF();
             BeheerHuurders bhuur = new BeheerHuurders(rhuur);
@@ -47,8 +45,8 @@ namespace ConsoleAppModelTest
             Huurperiode hp = new Huurperiode(DateTime.Now, 10);
             Huurder h = new Huurder(2, "Jos", new Contactgegevens("email1", "tel", "adres"));
             Park pp = new Park("p1", "Buitenhoeve", "Deinze");
-            Huis huis = new Huis(1, "Kerkstraat", 5, true, pp);
-            bc.MaakContract("c2", hp, h, huis);
+            Huis huis = new Huis(1,"Kerkstraat", 5, true, pp);
+            bc.MaakContract("c2", hp, h, x);
 
             var y = bc.GeefContract("c2");
             var t = bh.GeefHuis(1);

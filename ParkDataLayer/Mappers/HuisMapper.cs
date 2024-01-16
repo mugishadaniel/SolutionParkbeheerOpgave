@@ -12,7 +12,12 @@ namespace ParkDataLayer.Mappers
     {
         public static Huis ToHuis(HuisEF huisEF)
         {
-            return new Huis(huisEF.Id,huisEF.Straat,huisEF.Nr,huisEF.Actief,ParkMapper.ToPark(huisEF.Park));
+            Huis huis = new Huis(huisEF.Id,huisEF.Straat,huisEF.Nr,huisEF.Actief,ParkMapper.ToPark(huisEF.Park));
+            foreach (var item in huisEF._huurcontracten)
+            {
+                huis.VoegHuurcontractToe(HuurcontractMapper.ToHuurcontractHuis(item));
+            }
+            return huis;
         }
 
         public static Huis ToHuisPark(HuisEF huisEF)

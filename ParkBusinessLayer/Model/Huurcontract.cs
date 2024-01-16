@@ -13,6 +13,12 @@ namespace ParkBusinessLayer.Model
             ZetHuurder(huurder);
             ZetHuis(huis);
         }
+        public Huurcontract(string id, Huurperiode huurperiode,Huurder huurder)
+        {
+            ZetId(id);
+            ZetHuurperiode(huurperiode);
+            ZetHuurder(huurder);
+        }
         public string Id { get; private set; }
         public Huurperiode Huurperiode { get; private set; }
         public Huurder Huurder { get; private set; }
